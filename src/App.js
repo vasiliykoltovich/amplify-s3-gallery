@@ -9,6 +9,7 @@ const REGION = process.env.REACT_APP_AWS_REGION;
 const BUCKET = process.env.REACT_APP_S3_BUCKET;
 const ACCESS_KEY = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
 const SECRET_KEY = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
+const ENV_INDICATOR = process.env.REACT_APP_ENV_INDICATOR;
 
 const s3Client = new S3Client({
   region: REGION,
@@ -70,18 +71,19 @@ export default function App() {
 
   return (
     <div style={{ textAlign: "center", padding: 40, fontFamily: "Arial" }}>
-      <h1>React + S3 (Production, без Amplify CLI)</h1>
+      <h1>React App (Environment: {ENV_INDICATOR})</h1>
+
 
       <div style={{ marginBottom: 20 }}>
         <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} />
         <button onClick={uploadFile} disabled={!file} style={{ marginLeft: 10 }}>
-          Загрузить в S3
+          Upload to AWS S3
         </button>
       </div>
 
-      <button onClick={loadImages}>Показать все изображения</button>
+      <button onClick={loadImages}>Show all images</button>
 
-      <h2 style={{ marginTop: 30 }}>Галерея</h2>
+      <h2 style={{ marginTop: 30 }}>Gallery</h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 20, justifyContent: "center" }}>
         {images.map((img) => (
           <div key={img.key} style={{ width: 200 }}>
