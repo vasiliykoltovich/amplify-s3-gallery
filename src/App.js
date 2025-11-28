@@ -92,7 +92,7 @@ export default function App() {
           onChange={(e) => setFile(e.target.files[0])}
         />
         <button onClick={uploadFile} disabled={!file} style={{ marginLeft: 10 }}>
-          Upload to S3
+          Upload to S3 with new picture
         </button>
       </div>
 
